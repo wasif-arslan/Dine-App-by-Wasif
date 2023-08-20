@@ -1,13 +1,10 @@
 "use client";
-
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { Image as IImage } from "sanity";
 import { urlForImage } from "../../sanity/lib/image";
 import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { POST } from "@/api/cart/route";
-
 export default function ProductsCart(props: {
   price: number;
   _id: string;
