@@ -3,6 +3,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { StateContextProvider } from "@/components/Context/StateContext"; // Update with the correct path
+import Wrapper from "../components/Shared/wrapper";
+import ReduxProvider from "@/utils/ReduxProvider";
+import toast, { Toaster } from "react-hot-toast";
+import { ClerkProvider, auth } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,14 +21,26 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { userId }: any = auth();
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Header></Header>
-        <main className="px-[9rem]">{children}</main>
-
-        <Footer />
-      </body>
-    </html>
+    <ClerkProvider>
+      <ReduxProvider>
+        <html lang="en">
+          <body className={inter.className}>
+            {" "}
+            <Wrapper>
+              <StateContextProvider>
+              <Header userId={userId} />
+                <main className="px-[9rem]">
+                  {children}
+                  <Toaster />
+                </main>
+                <Footer />{" "}
+              </StateContextProvider>{" "}
+            </Wrapper>
+          </body>
+        </html>{" "}
+      </ReduxProvider>
+    </ClerkProvider>
   );
 }

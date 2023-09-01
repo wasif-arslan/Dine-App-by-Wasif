@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import header from "/public/header.webp";
 import Image from "next/image";
 import { ShoppingCart } from "lucide-react";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -18,11 +19,13 @@ export default function Hero() {
           Anyone can beat you but no one can beat your outfit as long as you
           wear Dine outfits.
         </p>
-        <Button className="bg-black h-12 px-8 mt-4">
-          {" "}
-          <ShoppingCart className="mr-2 " />
-          Start Shopping
-        </Button>
+        <Link href="/AllProducts">
+          <Button className="bg-black h-12 px-8 mt-4">
+            {" "}
+            <ShoppingCart className="mr-2 " />
+            Start Shopping
+          </Button>
+        </Link>
       </div>
       <div className="flex-1 ">
         <div className="z-10 ">

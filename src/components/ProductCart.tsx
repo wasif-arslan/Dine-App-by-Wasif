@@ -1,10 +1,13 @@
-"use client";
-import Image, { StaticImageData } from "next/image";
+
+
+import Image from "next/image";
 import Link from "next/link";
 import { Image as IImage } from "sanity";
 import { urlForImage } from "../../sanity/lib/image";
+import HandleCart from "./HandleCart";
 import { ShoppingCart } from "lucide-react";
-import { Button } from "@/components/ui/button";
+//import { Button } from "@/components/ui/button";
+
 export default function ProductsCart(props: {
   price: number;
   _id: string;
@@ -14,17 +17,18 @@ export default function ProductsCart(props: {
     name: string;
   };
 }) {
-  const handleAddToCart = async () => {
-    const res = await fetch("/api/cart", {
-      method: "POST",
-      body: JSON.stringify({
-        product_id: props._id,
-      }),
-    });
-    console.log(res);
-    const result = await res.json();
-    console.log(result);
-  };
+  // const handleAddToCart = async () => {
+  //   console.log();
+  //   const res = await fetch("/api/cart", {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       product_id: props._id,
+  //     }),
+  //   });
+  //   console.log(res);
+  //   const result = await res.json();
+  //   console.log(result);
+  // };
 
   return (
     <div>
@@ -46,9 +50,16 @@ export default function ProductsCart(props: {
           </p>
         </div>
       </Link>
-      <Button className=" w-full" onClick={handleAddToCart}>
+      {/* <Button
+        className=" w-full"
+        onClick={() => {
+          handleAddToCart();
+        }}
+      >
         <ShoppingCart className="mr-2 " /> Add to Cart
-      </Button>
+      </Button> */}
+      {/*       
+     // <HandleCart props={props} /> */}
     </div>
   );
 }
